@@ -117,14 +117,14 @@ double always_inline circclip(double x) {
 """
 
     def signal(self):
-        self.sig = np.linspace(0, self.max_sig, 200)
+        self.sig = np.linspace(0, self.max_sig, 32)
         a = self.op_signal([0],samples=len(self.sig))
         a[:,0] += self.sig
         return a
 
     def neg_signal(self):
         self.model += "_neg"
-        self.sig = np.linspace(0, -1.0*self.max_sig, 200)
+        self.sig = np.linspace(0, -1.0*self.max_sig, 32)
         a = self.op_signal([0],samples=len(self.sig))
         a[:,0] += self.sig
         return a
