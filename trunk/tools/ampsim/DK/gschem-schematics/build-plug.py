@@ -207,7 +207,10 @@ class Generators(object):
             td = v.generate_faust_table(p, y,"")
         else :
             td = v.generate_table(p, y,"")
-        v.plot(p,y)
+        yd_pos = y/td
+        fid = '/tmp/outPos.txt'
+        yd_pos.tofile(fid, sep=" ", format="%s\n")
+        #v.plot(p,y)
         if (table_neg):
             if (scip_div) :
                 td = None
@@ -218,10 +221,13 @@ class Generators(object):
             c_debug_load='', linearize='', c_real=("double"))
             y = p(v.signal())
             if (faust_table) :
-                v.generate_faust_table(p, y,"")
+                td = v.generate_faust_table(p, y,"")
             else :
                 td = v.generate_table(p, y,"")
-            v.plot(p,y)
+            yd_neg = y/td
+            fid = '/tmp/outNeg.txt'
+            yd_neg.tofile(fid, sep=" ", format="%s\n")
+            #v.plot(p,y)
 
     def write_final_file(self, a, dspfile,fdata,dspfileui,fuidata,freqs,gain_stages,switch=None,stereo=None,faust_table=None,bypass=None):
         button = ''
